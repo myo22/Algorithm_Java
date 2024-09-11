@@ -1,35 +1,42 @@
-import java.io.*;
 import java.util.*;
 
 class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int[] a = new int[N];
-        for(int i = 0; i < N; i++){
-            a[i] = sc.nextInt();
+        int[] arr = new int[9];
+        int sum = 0;
+        for(int i = 0; i < 9; i++){
+            arr[i] = sc.nextInt();
+            sum += arr[i];
         }
 
-        int x =  sc.nextInt();
+        boolean found = false;
+        int[] ans = new int[7];
 
-        boolean[] exist = new boolean[1000001];
-        for (int i = 0; i < N; i++){
-            exist[a[i]] = true;
+        for(int i = 0; i < 9; i++){
+            for(int j = i + 1; j < 9; j++){
+                if(sum - arr[i] - arr[j] == 100){
+                    int index = 0;
+                    for(int k = 0; k < 9; k++){
+                        if(k != i && k != j){
+                            ans[index++] = arr[k];
+                        }
+                    }
+                    found = true;
+                    break;
+                }
+            }
+            if(found){
+                break;
+            }
         }
 
-        int ans = 0;
+        Arrays.sort(ans);
 
-        for(int i = 0; i <= (x - 1) /2; i++){
-            if(i <= 1000000 && x - i <= 1000000)
-                ans += (exist[i] && exist[x - i]) ? 1 : 0;
-
-//            int pairValue  = x - a[i]; // 쌍이되는 값을 찾는 것
-//            if(1 <= pairValue && pairValue < 1000000){ // 인덱스로 사용할때는 항상 범위를 체크해야 한다.
-//                ans += exist[pairValue] ? 1 : 0;
-//            }
+        for(int i = 0; i < 7; i++){
+            System.out.println(ans[i]);
         }
-        System.out.println(ans);
 
 
     }
