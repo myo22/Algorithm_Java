@@ -1,6 +1,8 @@
-import java.util.*;
+package BruteForce;
 
-class Main {
+import java.util.Scanner;
+
+public class Algorithm_10448 {
     static boolean[] isEurekaNumber = new  boolean[1001];
 
     public static void preprocess(){
