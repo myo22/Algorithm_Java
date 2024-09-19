@@ -4,38 +4,42 @@ class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] arr = new int[9];
-        int sum = 0;
-        for(int i = 0; i < 9; i++){
-            arr[i] = sc.nextInt();
-            sum += arr[i];
+        int T = sc.nextInt();
+
+        int[] a = new int[45];
+
+        for(int i = 1; i < 45; i++){
+            a[i] = i * (i + 1) / 2;
         }
 
-        boolean found = false;
-        int[] ans = new int[7];
+        for(int i = 0; i < T; i++) {
 
-        for(int i = 0; i < 9; i++){
-            for(int j = i + 1; j < 9; j++){
-                if(sum - arr[i] - arr[j] == 100){
-                    int index = 0;
-                    for(int k = 0; k < 9; k++){
-                        if(k != i && k != j){
-                            ans[index++] = arr[k];
+            int K = sc.nextInt();
+            boolean found = false;
+
+            for(int j = 1; j < a.length; j++){
+                for(int k = 1; k < a.length; k++){
+                    for(int l = 1; l < a.length; l++){
+                        if(a[j] + a[k] + a[l] == K){
+                            found = true;
+                            break;
                         }
                     }
-                    found = true;
+                    if(found){
+                        break;
+                    }
+                }
+                if(found){
                     break;
                 }
             }
+
             if(found){
-                break;
+                System.out.println("1");
+            }else {
+                System.out.println("0");
             }
-        }
 
-        Arrays.sort(ans);
-
-        for(int i = 0; i < 7; i++){
-            System.out.println(ans[i]);
         }
 
 
