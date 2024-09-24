@@ -11,6 +11,8 @@ public class Algorithm_11005 {
 
         String ans = "";
 
+        // 1. N을 B로 나눈 나머지를 구하고, B로 나누자
+        // 2. 이때 가장 마지막 나머지부터 가장 자릿값이 된다.
         while (N > 0) {
             int digit = N % B;
             if (digit < 10){
