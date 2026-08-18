@@ -2,16 +2,21 @@ class Solution {
     public int hIndex(int[] citations) {
         Arrays.sort(citations);
         int n = citations.length;
-        int hIndex = 0;
-        for (int i = 0; i < n; i++) {
-            int cur = citations[n - 1 - i];
-            
-            if (cur >= i + 1) {
-                hIndex = i + 1;
-            } else {
-                break;
+        int h = 0;
+        int answer = 0;
+        while(h <= 1000) {
+            int count = 0;
+            for (int i = 0; i < n; i++) {
+                if (h <= citations[i]) {
+                    count++;
+                }
             }
+            
+            if (count >= h) {
+                answer = h;
+            }
+            h++;
         }
-        return hIndex;
+        return answer;
     }
 }
