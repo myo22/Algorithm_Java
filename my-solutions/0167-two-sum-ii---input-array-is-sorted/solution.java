@@ -1,22 +1,18 @@
-
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
-        int left = 0;
-        int right = numbers.length - 1;
-        
-        while (left < right) {
-            int sum = numbers[left] + numbers[right];
-            
+        int start = 0;
+        int end = numbers.length - 1;
+        while (start <= end) {
+            int sum = numbers[start] + numbers[end];
+            if (sum < target) {
+                start++;
+            } else if (sum > target){
+                end--;
+            }
             if (sum == target) {
-                return new int[] { left + 1, right + 1 }; // 문제에서 1부터 시작하는 인덱스를 요구함
-            } else if (sum < target) {
-                left++;
-            } else {
-                right--;
+                return new int[] {start + 1, end + 1};
             }
         }
-        
-        return new int[0];
+        return new int[] {0, 0};
     }
 }
-
